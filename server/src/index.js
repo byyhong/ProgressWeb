@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan')
 const cors = require('cors');
-
+const mongoose = require('mongoose');
 const router = require('./router');
 //have ./ to tell the program that it is a file and not a package 
 
@@ -15,5 +15,6 @@ app.use(morgan('tiny'));
 
 app.use(router);
 
-
-app.listen(8080);
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+    app.listen(8080);
+});
