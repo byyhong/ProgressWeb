@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
         const token = authHeader.split(' ')[1];
         jwt.verify(token, process.env.SECRET, (err, decoded) => {
             if(err){
-                res.status(403).send('Invalid Credentials!');
-        }else{
-            next();
-        }
+                res.status(403).send('Invalid Credential');
+            }else{
+                next();
+            }
         });
     }
 };
